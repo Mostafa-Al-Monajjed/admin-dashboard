@@ -27,7 +27,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import { usePathname, useRouter } from "next/navigation";
+import { useLocation, useNavigate } from "react-router-dom";
 import { grey } from "@mui/material/colors";
 import Tooltip from "@mui/material/Tooltip";
 
@@ -120,8 +120,8 @@ const Array3 = [
 
 // @ts-ignore
 function SideBar({ open, handleDrawerClose }) {
-  const pathname = usePathname();
-  const router = useRouter();
+  const pathname = useLocation().pathname;
+  const navigate = useNavigate();
   const theme = useTheme();
   return (
     <div>
@@ -197,7 +197,7 @@ function SideBar({ open, handleDrawerClose }) {
               >
                 <ListItemButton
                   onClick={() => {
-                    router.push(item.path);
+                    navigate(item.path);
                   }}
                   sx={[
                     {
@@ -272,7 +272,7 @@ function SideBar({ open, handleDrawerClose }) {
               >
                 <ListItemButton
                   onClick={() => {
-                    router.push(item.path);
+                    navigate(item.path);
                   }}
                   sx={[
                     {
@@ -347,7 +347,7 @@ function SideBar({ open, handleDrawerClose }) {
               >
                 <ListItemButton
                   onClick={() => {
-                    router.push(item.path);
+                    navigate(item.path);
                   }}
                   sx={[
                     {
@@ -409,3 +409,4 @@ function SideBar({ open, handleDrawerClose }) {
 }
 
 export default SideBar;
+

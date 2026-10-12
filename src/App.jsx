@@ -1,5 +1,6 @@
 // @ts-nocheck
 import * as React from "react";
+import { Outlet } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -75,6 +76,7 @@ export default function MiniDrawer({ children }) {
 
         <Box sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
+          <Outlet />
           {children}
         </Box>
       </Box>
