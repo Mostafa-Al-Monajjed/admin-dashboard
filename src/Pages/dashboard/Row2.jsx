@@ -63,7 +63,7 @@ const Row2 = () => {
           display: "flex",
           flexDirection: "column",
           gap: 2,
-          minWidth: "350px",
+          minWidth: { xs: 0, sm: "350px" },
           overflow: "auto",
         }}
       >

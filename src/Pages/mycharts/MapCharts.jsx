@@ -7,10 +7,8 @@ import {
   Graticule,
 } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
-import Header from "../../component/Header";
-
-const geoUrl =
-  "https://raw.githubusercontent.com/leakyMirror/map-of-europe/master/GeoJSON/europe.geojson";
+import Header from "../../Component/Header";
+import worldAtlas from "world-atlas/countries-110m.json";
 
 const populationData = [
   { name: "Germany", pop: 83 },
@@ -58,6 +56,7 @@ const MyMapCharts = ({ isDashboard = false }) => {
       <Box
         sx={{
           height: isDashboard ? "400px" : "calc(100vh - 120px)",
+          minHeight: isDashboard ? "400px" : "560px",
           width: "100%",
           display: "flex",
           flexDirection: "column",
@@ -137,18 +136,20 @@ const MyMapCharts = ({ isDashboard = false }) => {
           </Stack>
         )}
 
-        <Box sx={{ flexGrow: 1, width: "100%", height: "100%" }}>
+        <Box sx={{ flexGrow: 1, width: "100%", minHeight: isDashboard ? 320 : 460, height: "100%" }}>
           <ComposableMap
-            projection="geoAzimuthalEqualArea"
-            projectionConfig={{ rotate: [-15.0, -52.0, 0], scale: 850 }}
-            style={{ width: "100%", height: "100%" }}
+            projection="geoMercator"
+            projectionConfig={{ scale: isDashboard ? 430 : 700, center: [15, 54] }}
+            width={900}
+            height={500}
+            style={{ width: "100%", height: "100%", minHeight: 320 }}
           >
             <Graticule stroke={styles.graticule} />
-            <Geographies geography={geoUrl}>
+            <Geographies geography={worldAtlas}>
               {({ geographies }) =>
                 geographies.map((geo) => {
                   const country = populationData.find(
-                    (d) => d.name === geo.properties.NAME,
+                    (d) => d.name === geo.properties.name,
                   );
                   const fillColor = country
                     ? colorScale(country.pop)

@@ -2,6 +2,20 @@
 
 * {
   font-family: "Work Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+img,
+svg {
+  max-width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -27,4 +41,20 @@
 /* for Firefox */
 html {
   scrollbar-color: #cc1212 #3d4a59;
+}
+
+@media (max-width: 600px) {
+  .MuiToolbar-root {
+    gap: 4px;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .MuiToolbar-root .MuiStack-root {
+    gap: 0;
+  }
+
+  .MuiToolbar-root .MuiIconButton-root {
+    padding: 8px;
+  }
 }

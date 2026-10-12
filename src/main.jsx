@@ -21,13 +21,6 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { registerLicense } from "@syncfusion/ej2-base";
-
-// Register the Syncfusion license
-registerLicense(
-  "Ngo9BigBOggjHTQxAR8/V1JHaF1cXmhMYVRpR2NbeU5xdF9EZFZRRWY/P1ZhSXxVdkFgWX1ccnBVR2FUV0F9XEE=",
-);
-
 let router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>

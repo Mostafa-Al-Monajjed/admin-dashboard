@@ -9,7 +9,7 @@ const Row3 = () => {
   const theme = useTheme();
   return (
     <Stack gap={2} direction={"row"} mt={3} flexWrap={"wrap"}>
-      <Paper sx={{ width: "28%" }}>
+      <Paper sx={{ width: { xs: "100%", md: "28%" }, minWidth: 0 }}>
         <Typography
           color={theme.palette.secondary.main}
           sx={{ padding: "30px 30px 0 30px", textAlign: "center" }}
@@ -26,7 +26,7 @@ const Row3 = () => {
           height="100%"
         />
       </Paper>
-      <Paper sx={{ flexGrow: 1, minWidth: "400px", width: "33%" }}>
+      <Paper sx={{ flexGrow: 1, minWidth: { xs: 0, md: "400px" }, width: { xs: "100%", md: "33%" } }}>
         <Typography
           color={theme.palette.secondary.main}
           sx={{ padding: "30px 30px 0 30px", textAlign: "center" }}
@@ -37,7 +37,7 @@ const Row3 = () => {
         </Typography>
         <BarChat isDashboard={true} />
       </Paper>
-      <Paper sx={{ flexGrow: 1, minWidth: "400px", width: "33%" }}>
+      <Paper sx={{ flexGrow: 1, minWidth: { xs: 0, md: "400px" }, width: { xs: "100%", md: "33%" } }}>
         <Typography
           color={theme.palette.secondary.main}
           sx={{ padding: "30px 30px 0 30px", textAlign: "center", mb: 2 }}

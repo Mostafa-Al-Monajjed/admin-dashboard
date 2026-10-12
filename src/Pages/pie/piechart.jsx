@@ -1,17 +1,14 @@
 import React from "react";
-import {
-  AccumulationChartComponent,
-  AccumulationSeriesCollectionDirective,
-  AccumulationSeriesDirective,
-  Inject,
-  AccumulationLegend,
-  PieSeries,
-  AccumulationTooltip,
-  AccumulationDataLabel,
-} from "@syncfusion/ej2-react-charts";
-import { Browser } from "@syncfusion/ej2-base";
 import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/material";
+import {
+  Cell,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+  Legend,
+} from "recharts";
 import Header from "../../Component/Header";
 
 // حذفنا المكون المتداخل وأبقينا المكون الأساسي فقط
@@ -32,10 +29,6 @@ const PieChartComponent = ({
     { x: "Others", y: 12.0, text: "Others: 12.0%" },
   ];
 
-  const isDevice = Browser.isDevice;
-  const radiusValue = isDevice ? "40%" : "60%";
-  const fontSizeValue = isDevice ? "10px" : "12px";
-
   return (
     <div>
       <Header
@@ -43,57 +36,18 @@ const PieChartComponent = ({
         title={"PIE CHART"}
         subtitle={"A simple pie chart with customized shape"}
       />
-      <Box
-        sx={{ height: isDashboard ? "300px" : "75vh", width: "100%" }}
-        className="control-pane"
-      >
-        <AccumulationChartComponent
-          id={id}
-          title={isDashboard ? "" : "Global Electricity Generation - 2024"}
-          titleStyle={{
-            color: theme.palette.mode === "dark" ? "#fff" : "#000",
-            fontWeight: "600",
-          }}
-          enableAnimation={true}
-          height={height}
-          width={width}
-          background="transparent" // لضمان تناسقه مع الثيم
-          tooltip={{
-            enable: true,
-            format: "${point.x} : ${point.y}%",
-          }}
-        >
-          <Inject
-            services={[
-              AccumulationLegend,
-              PieSeries,
-              AccumulationTooltip,
-              AccumulationDataLabel,
-            ]}
-          />
-          <AccumulationSeriesCollectionDirective>
-            <AccumulationSeriesDirective
-              dataSource={data}
-              xName="x"
-              yName="y"
-              radius={radiusValue}
-              innerRadius="0%"
-              explode={true}
-              explodeOffset="10%"
-              explodeIndex={0}
-              dataLabel={{
-                visible: isDashboard ? false : true,
-                name: "text",
-                position: "Outside",
-                font: {
-                  fontWeight: "600",
-                  size: fontSizeValue,
-                  color: theme.palette.mode === "dark" ? "#fff" : "#000",
-                },
-              }}
-            />
-          </AccumulationSeriesCollectionDirective>
-        </AccumulationChartComponent>
+      <Box sx={{ height: isDashboard ? "300px" : "75vh", minHeight: 280, width: "100%" }}>
+        <ResponsiveContainer width="100%" height="100%" minHeight={260}>
+          <PieChart>
+            <Pie data={data} dataKey="y" nameKey="x" cx="50%" cy="45%" outerRadius="62%" label={!isDashboard} isAnimationActive>
+              {data.map((entry, index) => (
+                <Cell key={`${id}-${entry.x}`} fill={["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#0088fe", "#a4de6c"][index]} />
+              ))}
+            </Pie>
+            <Tooltip formatter={(value) => `${value}%`} />
+            <Legend wrapperStyle={{ color: theme.palette.text.primary, fontSize: 12 }} />
+          </PieChart>
+        </ResponsiveContainer>
       </Box>
     </div>
   );
