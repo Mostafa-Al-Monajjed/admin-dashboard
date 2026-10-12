@@ -27,7 +27,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import { useLocation, useNavigate } from "react-router-dom";
+import { usePathname, useRouter } from "next/navigation";
 import { grey } from "@mui/material/colors";
 import Tooltip from "@mui/material/Tooltip";
 
@@ -120,8 +120,8 @@ const Array3 = [
 
 // @ts-ignore
 function SideBar({ open, handleDrawerClose }) {
-  let location = useLocation();
-  let navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
   const theme = useTheme();
   return (
     <div>
@@ -197,14 +197,14 @@ function SideBar({ open, handleDrawerClose }) {
               >
                 <ListItemButton
                   onClick={() => {
-                    navigate(item.path);
+                    router.push(item.path);
                   }}
                   sx={[
                     {
                       minHeight: 48,
                       px: 2.5,
                       bgcolor:
-                        item.path === location.pathname
+                        item.path === pathname
                           ? theme.palette.mode === "dark"
                             ? grey[800]
                             : grey[300]
@@ -272,14 +272,14 @@ function SideBar({ open, handleDrawerClose }) {
               >
                 <ListItemButton
                   onClick={() => {
-                    navigate(item.path);
+                    router.push(item.path);
                   }}
                   sx={[
                     {
                       minHeight: 48,
                       px: 2.5,
                       bgcolor:
-                        item.path === location.pathname
+                        item.path === pathname
                           ? theme.palette.mode === "dark"
                             ? grey[800]
                             : grey[300]
@@ -347,14 +347,14 @@ function SideBar({ open, handleDrawerClose }) {
               >
                 <ListItemButton
                   onClick={() => {
-                    navigate(item.path);
+                    router.push(item.path);
                   }}
                   sx={[
                     {
                       minHeight: 48,
                       px: 2.5,
                       bgcolor:
-                        item.path === location.pathname
+                        item.path === pathname
                           ? theme.palette.mode === "dark"
                             ? grey[800]
                             : grey[300]

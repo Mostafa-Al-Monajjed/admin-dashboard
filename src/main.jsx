@@ -2,18 +2,18 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 // import "./index.css";
 import App from "./App.jsx";
-import Dashboard from "./Pages/dashboard/Dashboard.jsx";
-import Team from "./Pages/team/Team.jsx";
-import Contacts from "./Pages/contacts/Contacts.jsx";
-import Invoices from "./Pages/invoices/Invoices.jsx";
-import Form from "./Pages/form/Form.jsx";
-import Calendar from "./Pages/calendar/Calendar.jsx";
-import Faq from "./Pages/faq/Faq.jsx";
-import Bar from "./Pages/bar/Bar.jsx";
-import Pie from "./Pages/pie/Pie.jsx";
-import MyLineChart from "./Pages/line/Line.jsx";
-import MyMapCharts from "./Pages/mycharts/MyCharts.jsx";
-import NotFound from "./Pages/notfound/NotFound.jsx";
+import Dashboard from "./Views/dashboard/Dashboard.jsx";
+import Team from "./Views/team/Team.jsx";
+import Contacts from "./Views/contacts/Contacts.jsx";
+import Invoices from "./Views/invoices/Invoices.jsx";
+import Form from "./Views/form/Form.jsx";
+import Calendar from "./Views/calendar/Calendar.jsx";
+import Faq from "./Views/faq/Faq.jsx";
+import Bar from "./Views/bar/Bar.jsx";
+import Pie from "./Views/pie/Pie.jsx";
+import MyLineChart from "./Views/line/Line.jsx";
+import MyMapCharts from "./Views/mycharts/MyCharts.jsx";
+import NotFound from "./Views/notfound/NotFound.jsx";
 
 import {
   createBrowserRouter,
@@ -21,12 +21,6 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { registerLicense } from "@syncfusion/ej2-base";
-
-// Register the Syncfusion license
-registerLicense(
-  "Ngo9BigBOggjHTQxAR8/V1JHaF1cXmhMYVRpR2NbeU5xdF9EZFZRRWY/P1ZhSXxVdkFgWX1ccnBVR2FUV0F9XEE=",
-);
 
 let router = createBrowserRouter(
   createRoutesFromElements(

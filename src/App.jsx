@@ -1,5 +1,4 @@
 // @ts-nocheck
-// @ts-check
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -8,7 +7,6 @@ import TopBar from "./Component/TopBar";
 import SideBar from "./Component/SideBar";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
-import { Outlet } from "react-router-dom";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -19,7 +17,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer({ children }) {
   // @ts-ignore
   const [open, setOpen] = React.useState(false);
 
@@ -32,9 +30,10 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  const [mode, setMode] = React.useState(
-    localStorage.getItem("mode") || "light",
-  );
+  const [mode, setMode] = React.useState("light");
+  React.useEffect(() => {
+    setMode(window.localStorage.getItem("mode") || "light");
+  }, []);
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -76,7 +75,7 @@ export default function MiniDrawer() {
 
         <Box sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
-          <Outlet />
+          {children}
         </Box>
       </Box>
     </ThemeProvider>
